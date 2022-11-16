@@ -1,0 +1,100 @@
+<section class="property-binding">
+
+  <article>
+    <h3>Interpolacion</h3>
+    <p>String renderizada con Interpolacion: {{ url }}</p>
+
+  
+  </article>
+
+
+  <article>
+    <h3>Enlace de clase y estilo</h3>
+    <div>
+      Selecione una clase:
+      <select #classe (change)="0">
+        <option value="alert-success">Exitoso</option>
+        <option value="alert-info">Info</option>
+        <option value="alert-warning">Alerta</option>
+        <option value="alert-danger">Error</option>
+      </select>
+      <br><br>
+
+      <div class="alert {{ classe.value }}" role="alert">
+        Texto coloreado segun al valor de combobox.
+      </div>
+
+      <div class="alert" role="alert"
+        [class.alert-success]="classe.value == 'alert-success'">
+        Exitoso
+      </div>
+
+      <div class="alert" role="alert"
+      [class.alert-info]="classe.value == 'alert-info'">
+        Info
+      </div>
+
+      <div class="alert" role="alert"
+      [class.alert-warning]="classe.value == 'alert-warning'">
+        Alerta
+      </div>
+
+      <div class="alert" role="alert"
+      [class.alert-danger]="classe.value == 'alert-danger'"
+      >
+        Error
+      </div>
+
+      <div class="alert alert-danger" role="alert"
+        [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+        Este texto solo aparece en caso de error.
+      </div>
+
+    </div>
+  </article>
+
+</section>
+
+<section class="event-binding">
+
+  <article>
+    <h3>Eventos binding</h3>
+    <div>
+      <button (click)="botaoClicado()"
+      class="btn btn-primary">
+        click aqui!
+      </button>
+
+      <br><br>
+
+      <input type="text"
+        (keyup)="onKeyUp($event)"
+        (keyup.enter)="salvarValor(campoInput.value)"
+        (blur)="salvarValor(campoInput.value)"
+        #campoInput />
+
+       <p>Valor atual: {{ valorAtual }}</p>
+       <p>Valor salvo: {{ valorSalvo }}</p>
+
+       <br>
+
+    </div>
+  </article>
+
+</section>
+
+<app-meu-form></app-meu-form>
+
+<section class="input-output-properties">
+
+  <article>
+    <h3>Input/Output Properties</h3>
+
+    <app-curso [nome]="nomeDoCurso"></app-curso>
+
+    <contador [valor]="valorInicial"
+      (mudouValor)="onMudouValor($event)"
+    ></contador>
+
+  </article>
+</section>
